@@ -7,8 +7,10 @@ environment:
   sdk: ^3.12.1
 
 dependencies:
+  cupertino_icons: ^1.0.9
   flutter:
     sdk: flutter
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
