@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
+import 'app.dart';
+import 'services/favorites_store.dart';
+import 'services/settings_store.dart';
+import 'services/notification_service.dart';
 
-void main() {
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FavoritesStore.instance.load();
+  await SettingsStore.instance.load();
+  await NotificationService.instance.init();
+  await NotificationService.instance.restoreIfNeeded();
+  runApp(const App());
 }
