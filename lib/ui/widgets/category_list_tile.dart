@@ -10,8 +10,12 @@ class CategoryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final iconBg = context.isDark
+        ? category.color.withOpacity(0.18)
+        : category.bgColor;
+
     return Material(
-      color: AppColors.cardBg,
+      color: context.cardColor,
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
@@ -27,7 +31,9 @@ class CategoryListTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF28325A).withOpacity(0.08),
+                color: const Color(0xFF28325A).withOpacity(
+                  context.isDark ? 0.0 : 0.08,
+                ),
                 blurRadius: 24,
                 offset: const Offset(0, 8),
               ),
@@ -39,7 +45,7 @@ class CategoryListTile extends StatelessWidget {
                 width: 46,
                 height: 46,
                 decoration: BoxDecoration(
-                  color: category.bgColor,
+                  color: iconBg,
                   borderRadius: BorderRadius.circular(14),
                 ),
                 alignment: Alignment.center,
@@ -52,9 +58,10 @@ class CategoryListTile extends StatelessWidget {
                   children: [
                     Text(
                       category.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
+                        color: context.textPrimary,
                       ),
                     ),
                     const SizedBox(height: 3),
@@ -69,7 +76,7 @@ class CategoryListTile extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right, color: AppColors.textSub),
+              Icon(Icons.chevron_right, color: context.textSecondary),
             ],
           ),
         ),

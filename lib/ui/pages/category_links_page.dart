@@ -11,7 +11,7 @@ class CategoryLinksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: context.bgColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -20,8 +20,7 @@ class CategoryLinksPage extends StatelessWidget {
               child: Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back,
-                        color: AppColors.textMain),
+                    icon: Icon(Icons.arrow_back, color: context.textPrimary),
                     onPressed: () => Navigator.pop(context),
                   ),
                   Container(
@@ -32,16 +31,16 @@ class CategoryLinksPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(11),
                     ),
                     alignment: Alignment.center,
-                    child: Icon(category.icon,
-                        color: category.color, size: 20),
+                    child: Icon(category.icon, color: category.color, size: 20),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
                       category.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
+                        color: context.textPrimary,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -51,13 +50,16 @@ class CategoryLinksPage extends StatelessWidget {
             ),
             Expanded(
               child: category.links.isEmpty
-                  ? const Center(
-                      child: Text('هیچ لینکی در این دسته وجود ندارد.'))
+                  ? Center(
+                      child: Text(
+                        'هیچ لینکی در این دسته وجود ندارد.',
+                        style: TextStyle(color: context.textSecondary),
+                      ),
+                    )
                   : ListView.separated(
                       padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
                       itemCount: category.links.length,
-                      separatorBuilder: (_, __) =>
-                          const SizedBox(height: 10),
+                      separatorBuilder: (_, __) => const SizedBox(height: 10),
                       itemBuilder: (context, index) => QuickLinkTile(
                         item: category.links[index],
                         category: category,

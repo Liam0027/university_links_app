@@ -10,13 +10,17 @@ class FavoritesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.fromLTRB(18, 18, 18, 8),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 8),
           child: Row(
             children: [
               Text(
                 'علاقه‌مندی‌ها',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: context.textPrimary,
+                ),
               ),
             ],
           ),
@@ -55,13 +59,13 @@ class _EmptyFavorites extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.star_border, size: 44,
-                color: AppColors.textSub.withOpacity(0.5)),
+            Icon(Icons.star_border,
+                size: 44, color: context.textSecondary.withOpacity(0.5)),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'هنوز لینکی به علاقه‌مندی‌ها اضافه نکرده‌اید',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13, color: AppColors.textSub),
+              style: TextStyle(fontSize: 13, color: context.textSecondary),
             ),
             const SizedBox(height: 6),
             Text(
@@ -69,7 +73,7 @@ class _EmptyFavorites extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 11.5,
-                color: AppColors.textSub.withOpacity(0.8),
+                color: context.textSecondary.withOpacity(0.8),
               ),
             ),
           ],

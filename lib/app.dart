@@ -9,8 +9,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseTextTheme = GoogleFonts.vazirmatnTextTheme();
-
     return ValueListenableBuilder<ThemeMode>(
       valueListenable: SettingsStore.instance.themeMode,
       builder: (context, mode, _) {
@@ -18,33 +16,8 @@ class App extends StatelessWidget {
           title: 'لینک‌های دانشگاه',
           debugShowCheckedModeBanner: false,
           themeMode: mode,
-          theme: ThemeData(
-            useMaterial3: true,
-            brightness: Brightness.light,
-            scaffoldBackgroundColor: AppColors.background,
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: AppColors.primary,
-              primary: AppColors.primary,
-            ),
-            textTheme: baseTextTheme.apply(
-              bodyColor: AppColors.textMain,
-              displayColor: AppColors.textMain,
-            ),
-          ),
-          darkTheme: ThemeData(
-            useMaterial3: true,
-            brightness: Brightness.dark,
-            scaffoldBackgroundColor: AppColors.backgroundDark,
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: AppColors.primary,
-              brightness: Brightness.dark,
-              primary: AppColors.primary,
-            ),
-            textTheme: baseTextTheme.apply(
-              bodyColor: AppColors.textMainDark,
-              displayColor: AppColors.textMainDark,
-            ),
-          ),
+          theme: _buildTheme(Brightness.light),
+          darkTheme: _buildTheme(Brightness.dark),
           builder: (context, child) => Directionality(
             textDirection: TextDirection.rtl,
             child: child!,
@@ -52,6 +25,36 @@ class App extends StatelessWidget {
           home: const MainPage(),
         );
       },
+    );
+  }
+
+  ThemeData _buildTheme(Brightness brightness) {
+    final isDark = brightness == Brightness.dark;
+    final textColor = isDark ? AppColors.textMainDark : AppColors.textMain;
+    final bgColor = isDark ? AppColors.backgroundDark : AppColors.background;
+    final cardColor = isDark ? AppColors.cardBgDark : AppColors.cardBg;
+
+    return ThemeData(
+      useMaterial3: true,
+      brightness: brightness,
+      scaffoldBackgroundColor: bgColor,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: AppColors.primary,
+        brightness: brightness,
+        primary: AppColors.primary,
+        surface: cardColor,
+        onSurface: textColor,
+      ),
+      cardColor: cardColor,
+      textTheme: GoogleFonts.vazirmatnTextTheme().apply(
+        bodyColor: textColor,
+        displayColor: textColor,
+      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: bgColor,
+        elevation: 0,
+        centerTitle: true,
+      ),
     );
   }
 }

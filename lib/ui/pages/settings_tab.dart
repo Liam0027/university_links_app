@@ -9,13 +9,17 @@ class SettingsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.fromLTRB(18, 18, 18, 8),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 8),
           child: Row(
             children: [
               Text(
                 'تنظیمات',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: context.textPrimary,
+                ),
               ),
             ],
           ),
@@ -24,7 +28,7 @@ class SettingsTab extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
             children: [
-              const _SectionLabel(label: 'عمومی'),
+              _SectionLabel(label: 'عمومی'),
               const SizedBox(height: 10),
               ValueListenableBuilder<bool>(
                 valueListenable: SettingsStore.instance.notificationsEnabled,
@@ -56,16 +60,16 @@ class SettingsTab extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 22),
-              const _SectionLabel(label: 'درباره برنامه'),
+              _SectionLabel(label: 'درباره برنامه'),
               const SizedBox(height: 10),
-              const _SettingsTile(
+              _SettingsTile(
                 icon: Icons.info_outline,
-                color: Color(0xFF2BC4A8),
-                bgColor: Color(0xFFE3F8F4),
+                color: const Color(0xFF2BC4A8),
+                bgColor: const Color(0xFFE3F8F4),
                 title: 'نسخه برنامه',
                 trailing: Text(
                   '۱.۰.۰',
-                  style: TextStyle(fontSize: 12, color: AppColors.textSub),
+                  style: TextStyle(fontSize: 12, color: context.textSecondary),
                 ),
               ),
               const SizedBox(height: 10),
@@ -93,10 +97,10 @@ class _SectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 12.5,
         fontWeight: FontWeight.w700,
-        color: AppColors.textSub,
+        color: context.textSecondary,
       ),
     );
   }
@@ -121,14 +125,18 @@ class _SettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final iconBg = context.isDark ? color.withOpacity(0.18) : bgColor;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
-        color: AppColors.cardBg,
+        color: context.cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF28325A).withOpacity(0.06),
+            color: const Color(
+              0xFF28325A,
+            ).withOpacity(context.isDark ? 0.0 : 0.06),
             blurRadius: 18,
             offset: const Offset(0, 6),
           ),
@@ -140,7 +148,7 @@ class _SettingsTile extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: bgColor,
+              color: iconBg,
               borderRadius: BorderRadius.circular(12),
             ),
             alignment: Alignment.center,
@@ -153,18 +161,19 @@ class _SettingsTile extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
+                    color: context.textPrimary,
                   ),
                 ),
                 if (subtitle != null) ...[
                   const SizedBox(height: 2),
                   Text(
                     subtitle!,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 11,
-                      color: AppColors.textSub,
+                      color: context.textSecondary,
                     ),
                   ),
                 ],

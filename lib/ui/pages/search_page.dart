@@ -39,7 +39,7 @@ class _SearchPageState extends State<SearchPage> {
     final hasQuery = _query.trim().isNotEmpty;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: context.bgColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -48,15 +48,17 @@ class _SearchPageState extends State<SearchPage> {
               child: Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back, color: AppColors.textMain),
+                    icon: Icon(Icons.arrow_back, color: context.textPrimary),
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 4),
+                        horizontal: 16,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
-                        color: AppColors.cardBg,
+                        color: context.cardColor,
                         borderRadius: BorderRadius.circular(14),
                         boxShadow: [
                           BoxShadow(
@@ -68,22 +70,30 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                       child: Row(
                         children: [
-                          const Icon(Icons.search,
-                              size: 18, color: AppColors.textSub),
+                          Icon(
+                            Icons.search,
+                            size: 18,
+                            color: context.textSecondary,
+                          ),
                           const SizedBox(width: 10),
                           Expanded(
                             child: TextField(
                               controller: _controller,
                               autofocus: true,
                               onChanged: (v) => setState(() => _query = v),
-                              decoration: const InputDecoration(
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: context.textPrimary,
+                              ),
+                              decoration: InputDecoration(
                                 isDense: true,
                                 border: InputBorder.none,
                                 hintText: 'جستجوی سامانه یا سایت...',
                                 hintStyle: TextStyle(
-                                    fontSize: 13, color: AppColors.textSub),
+                                  fontSize: 13,
+                                  color: context.textSecondary,
+                                ),
                               ),
-                              style: const TextStyle(fontSize: 13),
                             ),
                           ),
                           if (hasQuery)
@@ -92,8 +102,11 @@ class _SearchPageState extends State<SearchPage> {
                                 _controller.clear();
                                 setState(() => _query = '');
                               },
-                              child: const Icon(Icons.close,
-                                  size: 18, color: AppColors.textSub),
+                              child: Icon(
+                                Icons.close,
+                                size: 18,
+                                color: context.textSecondary,
+                              ),
                             ),
                         ],
                       ),
@@ -104,19 +117,18 @@ class _SearchPageState extends State<SearchPage> {
             ),
             Expanded(
               child: !hasQuery
-                  ? const _SearchHint()
+                  ? _SearchHint()
                   : results.isEmpty
-                      ? const _NoResults()
-                      : ListView.separated(
-                          padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
-                          itemCount: results.length,
-                          separatorBuilder: (_, __) =>
-                              const SizedBox(height: 10),
-                          itemBuilder: (context, index) => QuickLinkTile(
-                            item: results[index].key,
-                            category: results[index].value,
-                          ),
-                        ),
+                  ? const _NoResults()
+                  : ListView.separated(
+                      padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
+                      itemCount: results.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 10),
+                      itemBuilder: (context, index) => QuickLinkTile(
+                        item: results[index].key,
+                        category: results[index].value,
+                      ),
+                    ),
             ),
           ],
         ),
@@ -126,8 +138,6 @@ class _SearchPageState extends State<SearchPage> {
 }
 
 class _SearchHint extends StatelessWidget {
-  const _SearchHint();
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -136,13 +146,16 @@ class _SearchHint extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.search,
-                size: 40, color: AppColors.textSub.withOpacity(0.5)),
+            Icon(
+              Icons.search,
+              size: 40,
+              color: context.textSecondary.withOpacity(0.5),
+            ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'نام سامانه یا بخشی از آدرس سایت را وارد کنید',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13, color: AppColors.textSub),
+              style: TextStyle(fontSize: 13, color: context.textSecondary),
             ),
           ],
         ),
@@ -160,12 +173,15 @@ class _NoResults extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.search_off,
-              size: 40, color: AppColors.textSub.withOpacity(0.5)),
+          Icon(
+            Icons.search_off,
+            size: 40,
+            color: context.textSecondary.withOpacity(0.5),
+          ),
           const SizedBox(height: 12),
-          const Text(
+          Text(
             'هیچ نتیجه‌ای پیدا نشد',
-            style: TextStyle(fontSize: 13, color: AppColors.textSub),
+            style: TextStyle(fontSize: 13, color: context.textSecondary),
           ),
         ],
       ),

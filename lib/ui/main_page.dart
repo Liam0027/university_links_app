@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
 import '../data/categories_data.dart';
-import '../ui/pages/category_links_page.dart';
+import 'pages/category_links_page.dart';
 import 'pages/home_tab.dart';
 import 'pages/categories_tab.dart';
 import 'pages/favorites_tab.dart';
@@ -24,7 +24,6 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: _navIndex == 0 ? const _AppDrawer() : null,
-      backgroundColor: AppColors.background,
       body: SafeArea(
         bottom: false,
         child: IndexedStack(
@@ -45,22 +44,17 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Drawer
-// ---------------------------------------------------------------------------
-
 class _AppDrawer extends StatelessWidget {
   const _AppDrawer();
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: AppColors.cardBg,
+      backgroundColor: context.cardColor,
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // هدر
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 18),
@@ -92,7 +86,6 @@ class _AppDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            // لیست دسته‌بندی‌ها
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(vertical: 8),
@@ -101,7 +94,9 @@ class _AppDrawer extends StatelessWidget {
                   final cat = categories[index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 4),
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -118,16 +113,17 @@ class _AppDrawer extends StatelessWidget {
                       ),
                       title: Text(
                         cat.title,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 13.5,
                           fontWeight: FontWeight.w600,
+                          color: context.textPrimary,
                         ),
                       ),
                       subtitle: Text(
                         '${cat.links.length} لینک',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 11,
-                          color: AppColors.textSub,
+                          color: context.textSecondary,
                         ),
                       ),
                       onTap: () {
@@ -135,8 +131,7 @@ class _AppDrawer extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) =>
-                                CategoryLinksPage(category: cat),
+                            builder: (_) => CategoryLinksPage(category: cat),
                           ),
                         );
                       },

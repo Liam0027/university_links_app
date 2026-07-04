@@ -48,10 +48,7 @@ class HomeTab extends StatelessWidget {
               ...quickLinks.map(
                 (LinkItem link) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: QuickLinkTile(
-                    item: link,
-                    category: categoryOf(link),
-                  ),
+                  child: QuickLinkTile(item: link, category: categoryOf(link)),
                 ),
               ),
             ]),

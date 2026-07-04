@@ -23,7 +23,7 @@ class BottomNavBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 14, 10, 18),
       decoration: BoxDecoration(
-        color: AppColors.cardBg,
+        color: context.cardColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(24),
           topRight: Radius.circular(24),
@@ -52,7 +52,7 @@ class BottomNavBar extends StatelessWidget {
                   Icon(
                     isActive ? item.activeIcon : item.icon,
                     size: 20,
-                    color: isActive ? AppColors.primary : AppColors.textSub,
+                    color: isActive ? AppColors.primary : context.textSecondary,
                   ),
                   const SizedBox(height: 5),
                   Text(
@@ -60,7 +60,7 @@ class BottomNavBar extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
-                      color: isActive ? AppColors.primary : AppColors.textSub,
+                      color: isActive ? AppColors.primary : context.textSecondary,
                     ),
                   ),
                   const SizedBox(height: 4),

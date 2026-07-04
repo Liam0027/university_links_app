@@ -35,12 +35,12 @@ class HomeHeader extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Builder(
-                        builder: (context) => _GlassIconButton(
+                        builder: (ctx) => _GlassIconButton(
                           icon: Icons.menu,
-                          onTap: () => Scaffold.of(context).openDrawer(),
+                          onTap: () => Scaffold.of(ctx).openDrawer(),
                         ),
                       ),
-                      const _GlassAvatar(text: 'دم'),
+                      // const _GlassAvatar(text: 'دم'),
                     ],
                   ),
                   const SizedBox(height: 26),
@@ -75,24 +75,19 @@ class HomeHeader extends StatelessWidget {
             ],
           ),
         ),
-        Positioned(
-          bottom: -24,
-          left: 18,
-          right: 18,
-          child: _SearchBarButton(),
-        ),
+        Positioned(bottom: -24, left: 18, right: 18, child: _SearchBarButton()),
       ],
     );
   }
 
   Widget _decorCircle(double size) => Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white.withOpacity(0.08),
-        ),
-      );
+    width: size,
+    height: size,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: Colors.white.withOpacity(0.08),
+    ),
+  );
 }
 
 class _GlassIconButton extends StatelessWidget {
@@ -119,38 +114,38 @@ class _GlassIconButton extends StatelessWidget {
   }
 }
 
-class _GlassAvatar extends StatelessWidget {
-  final String text;
+// class _GlassAvatar extends StatelessWidget {
+//   final String text;
 
-  const _GlassAvatar({required this.text});
+//   const _GlassAvatar({required this.text});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 42,
-      height: 42,
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.18),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        text,
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 15,
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: 42,
+//       height: 42,
+//       decoration: BoxDecoration(
+//         color: Colors.white.withOpacity(0.18),
+//         borderRadius: BorderRadius.circular(14),
+//       ),
+//       alignment: Alignment.center,
+//       child: Text(
+//         text,
+//         style: const TextStyle(
+//           color: Colors.white,
+//           fontWeight: FontWeight.bold,
+//           fontSize: 15,
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class _SearchBarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.cardBg,
+      color: context.cardColor,
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
@@ -170,13 +165,13 @@ class _SearchBarButton extends StatelessWidget {
               ),
             ],
           ),
-          child: const Row(
+          child: Row(
             children: [
-              Icon(Icons.search, size: 18, color: AppColors.textSub),
-              SizedBox(width: 10),
+              Icon(Icons.search, size: 18, color: context.textSecondary),
+              const SizedBox(width: 10),
               Text(
                 'جستجوی سامانه یا سایت...',
-                style: TextStyle(fontSize: 13, color: AppColors.textSub),
+                style: TextStyle(fontSize: 13, color: context.textSecondary),
               ),
             ],
           ),

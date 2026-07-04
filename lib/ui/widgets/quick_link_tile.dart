@@ -21,7 +21,7 @@ class QuickLinkTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.cardBg,
+      color: context.cardColor,
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
@@ -32,7 +32,9 @@ class QuickLinkTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF28325A).withOpacity(0.08),
+                color: const Color(0xFF28325A).withOpacity(
+                  context.isDark ? 0.0 : 0.08,
+                ),
                 blurRadius: 24,
                 offset: const Offset(0, 8),
               ),
@@ -48,9 +50,10 @@ class QuickLinkTile extends StatelessWidget {
                   children: [
                     Text(
                       item.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 13.5,
                         fontWeight: FontWeight.bold,
+                        color: context.textPrimary,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -58,9 +61,9 @@ class QuickLinkTile extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       item.shortUrl,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 11,
-                        color: AppColors.textSub,
+                        color: context.textSecondary,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -84,7 +87,7 @@ class QuickLinkTile extends StatelessWidget {
                           size: 18,
                           color: isFav
                               ? const Color(0xFFFFB23F)
-                              : AppColors.textSub,
+                              : context.textSecondary,
                         ),
                       ),
                     );
@@ -95,14 +98,14 @@ class QuickLinkTile extends StatelessWidget {
                 width: 30,
                 height: 30,
                 decoration: BoxDecoration(
-                  color: AppColors.background,
+                  color: context.bgColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 alignment: Alignment.center,
-                child: const Icon(
+                child: Icon(
                   Icons.north_east,
                   size: 14,
-                  color: AppColors.textSub,
+                  color: context.textSecondary,
                 ),
               ),
             ],
