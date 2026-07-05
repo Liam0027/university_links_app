@@ -6,15 +6,23 @@ import '../../models/link_category.dart';
 import '../widgets/quick_link_tile.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+  final String firstCharInput;
+  const SearchPage({super.key, required this.firstCharInput});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final TextEditingController _controller = TextEditingController();
-  String _query = '';
+  late final TextEditingController _controller;
+  late String _query;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.firstCharInput);
+    _query = widget.firstCharInput;
+  }
 
   @override
   void dispose() {
@@ -80,7 +88,10 @@ class _SearchPageState extends State<SearchPage> {
                             child: TextField(
                               controller: _controller,
                               autofocus: true,
-                              onChanged: (v) => setState(() => _query = v),
+                              onChanged: (v) {
+                                if (v.isEmpty) Navigator.pop(context);
+                                setState(() => _query = v);
+                              },
                               style: TextStyle(
                                 fontSize: 13,
                                 color: context.textPrimary,
@@ -101,6 +112,7 @@ class _SearchPageState extends State<SearchPage> {
                               onTap: () {
                                 _controller.clear();
                                 setState(() => _query = '');
+                                Navigator.pop(context);
                               },
                               child: Icon(
                                 Icons.close,

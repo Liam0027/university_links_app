@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:university_links_app/ui/utils/focus_mode.dart';
 import '../../core/app_colors.dart';
 import '../pages/search_page.dart';
 
@@ -75,7 +76,7 @@ class HomeHeader extends StatelessWidget {
             ],
           ),
         ),
-        Positioned(bottom: -24, left: 18, right: 18, child: _SearchBarButton()),
+        Positioned(bottom: -24, left: 18, right: 18, child: _SearchBar()),
       ],
     );
   }
@@ -141,41 +142,47 @@ class _GlassIconButton extends StatelessWidget {
 //   }
 // }
 
-class _SearchBarButton extends StatelessWidget {
+class _SearchBar extends StatelessWidget {
+  final TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: context.cardColor,
+      elevation: context.isDark ? 0 : 8,
+      shadowColor: AppColors.primary.withOpacity(0.28),
       borderRadius: BorderRadius.circular(16),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16),
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const SearchPage()),
-        ),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.primary.withOpacity(0.28),
-                blurRadius: 30,
-                offset: const Offset(0, 16),
-              ),
-            ],
+      child: TextField(
+        controller: _controller,
+        style: TextStyle(fontSize: 13, color: context.textPrimary),
+        decoration: InputDecoration(
+          isDense: true,
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(16.0),
           ),
-          child: Row(
-            children: [
-              Icon(Icons.search, size: 18, color: context.textSecondary),
-              const SizedBox(width: 10),
-              Text(
-                'جستجوی سامانه یا سایت...',
-                style: TextStyle(fontSize: 13, color: context.textSecondary),
-              ),
-            ],
+          filled: true,
+          fillColor: context.cardColor,
+          contentPadding: const EdgeInsets.all(18.0),
+          prefixIcon: Icon(
+            Icons.search,
+            size: 18,
+            color: context.textSecondary,
           ),
+          hintText: 'جستجوی سامانه یا سایت...',
+          hintStyle: TextStyle(fontSize: 13, color: context.textSecondary),
         ),
+        onTapOutside: (event) => unFocus(),
+        onChanged: (value) {
+          if (value.length == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => SearchPage(firstCharInput: value),
+              ),
+            );
+          }
+          _controller.clear();
+        },
       ),
     );
   }
