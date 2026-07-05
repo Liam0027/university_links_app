@@ -55,6 +55,11 @@ final List<LinkCategory> categories = [
         url: 'https://portal.saorg.ir/',
         shortUrl: 'portal.saorg.ir',
       ),
+      LinkItem(
+        title: 'صندوق رفاه دانشجویی (وام و خوابگاه)',
+        url: 'https://refah.swf.ir/',
+        shortUrl: 'refah.swf.ir',
+      ),
     ],
   ),
   LinkCategory(
