@@ -120,7 +120,7 @@ final List<LinkCategory> categories = [
 final List<LinkItem> quickLinks = [
   categories[0].links[0], // بوستان
   categories[0].links[1], // سمیاد
-  categories[1].links[0], // صبا
+  categories[1].links[1], // صبا
   categories[3].links[2], // دانشکده شهید چمران رشت
 ];
 
