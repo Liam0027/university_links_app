@@ -12,6 +12,7 @@ class HomeHeader extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
+          clipBehavior: Clip.antiAlias,
           padding: const EdgeInsets.fromLTRB(20, 18, 20, 70),
           decoration: const BoxDecoration(
             gradient: LinearGradient(

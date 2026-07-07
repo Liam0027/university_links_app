@@ -7,18 +7,36 @@ class SettingsStore {
 
   static const _notificationsKey = 'settings_notifications_enabled';
   static const _darkModeKey = 'settings_dark_mode_enabled';
+  // Tracks whether the user has manually set the theme at least once.
+  // Before first manual change, theme follows the device system setting.
+  static const _darkModeSetByUserKey = 'settings_dark_mode_set_by_user';
 
-  final ValueNotifier<bool> notificationsEnabled = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> notificationsEnabled = ValueNotifier<bool>(true);
   final ValueNotifier<bool> darkModeEnabled = ValueNotifier<bool>(false);
-  final ValueNotifier<ThemeMode> themeMode =
-      ValueNotifier<ThemeMode>(ThemeMode.light);
+  final ValueNotifier<ThemeMode> themeMode = ValueNotifier<ThemeMode>(
+    ThemeMode.system,
+  );
 
   Future<void> load() async {
     final prefs = await SharedPreferences.getInstance();
-    notificationsEnabled.value = prefs.getBool(_notificationsKey) ?? false;
-    final isDark = prefs.getBool(_darkModeKey) ?? false;
-    darkModeEnabled.value = isDark;
-    themeMode.value = isDark ? ThemeMode.dark : ThemeMode.light;
+
+    // Notifications: default is true
+    notificationsEnabled.value = prefs.getBool(_notificationsKey) ?? true;
+
+    final setByUser = prefs.getBool(_darkModeSetByUserKey) ?? false;
+    if (setByUser) {
+      // User has manually chosen — respect their choice
+      final isDark = prefs.getBool(_darkModeKey) ?? false;
+      darkModeEnabled.value = isDark;
+      themeMode.value = isDark ? ThemeMode.dark : ThemeMode.light;
+    } else {
+      // First launch — follow device system theme
+      final brightness =
+          WidgetsBinding.instance.platformDispatcher.platformBrightness;
+      final isDark = brightness == Brightness.dark;
+      darkModeEnabled.value = isDark;
+      themeMode.value = ThemeMode.system;
+    }
   }
 
   Future<void> setNotificationsEnabled(bool value) async {
@@ -32,5 +50,7 @@ class SettingsStore {
     themeMode.value = value ? ThemeMode.dark : ThemeMode.light;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_darkModeKey, value);
+    // Mark that the user has manually chosen — no longer follow system theme
+    await prefs.setBool(_darkModeSetByUserKey, true);
   }
 }
