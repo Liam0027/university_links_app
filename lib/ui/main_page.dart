@@ -17,8 +17,29 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _navIndex = 0;
+  late final PageController _pageController;
 
-  void _goToCategories() => setState(() => _navIndex = 1);
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _navIndex, keepPage: false);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _onNavTap(int index) {
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _goToCategories() => _onNavTap(1);
 
   @override
   Widget build(BuildContext context) {
@@ -26,23 +47,53 @@ class _MainPageState extends State<MainPage> {
       drawer: _navIndex == 0 ? const _AppDrawer() : null,
       body: SafeArea(
         bottom: false,
-        child: IndexedStack(
-          index: _navIndex,
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) => setState(() => _navIndex = index),
           children: [
-            HomeTab(onShowAllCategories: _goToCategories),
-            const CategoriesTab(),
-            const FavoritesTab(),
-            const SettingsTab(),
+            _KeepAlive(child: HomeTab(onShowAllCategories: _goToCategories)),
+            const _KeepAlive(child: CategoriesTab()),
+            const _KeepAlive(child: FavoritesTab()),
+            const _KeepAlive(child: SettingsTab()),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavBar(
         currentIndex: _navIndex,
-        onTap: (index) => setState(() => _navIndex = index),
+        onTap: _onNavTap,
       ),
     );
   }
 }
+
+// ---------------------------------------------------------------------------
+// Keeps each tab's state alive when swiped away
+// ---------------------------------------------------------------------------
+
+class _KeepAlive extends StatefulWidget {
+  final Widget child;
+
+  const _KeepAlive({required this.child});
+
+  @override
+  State<_KeepAlive> createState() => _KeepAliveState();
+}
+
+class _KeepAliveState extends State<_KeepAlive>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return widget.child;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Drawer
+// ---------------------------------------------------------------------------
 
 class _AppDrawer extends StatelessWidget {
   const _AppDrawer();
@@ -105,7 +156,9 @@ class _AppDrawer extends StatelessWidget {
                         width: 38,
                         height: 38,
                         decoration: BoxDecoration(
-                          color: cat.bgColor,
+                          color: context.isDark
+                              ? cat.color.withOpacity(0.18)
+                              : cat.bgColor,
                           borderRadius: BorderRadius.circular(11),
                         ),
                         alignment: Alignment.center,
