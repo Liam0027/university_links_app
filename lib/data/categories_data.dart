@@ -97,6 +97,8 @@ final List<LinkCategory> categories = [
         title: 'آموزشکده پسران انزلی (شهید خدادادی)',
         url: 'https://p-anzali.tvu.ac.ir',
         shortUrl: 'p-anzali.tvu.ac.ir',
+        logoUrl:
+            'https://cdn.jsdelivr.net/gh/Liam0027/university_links_app@master/assets/images/%D8%A7%D9%86%D8%B2%D9%84%DB%8C.png',
       ),
       LinkItem(
         title: 'آموزشکده دختران رشت (دکتر معین)',
