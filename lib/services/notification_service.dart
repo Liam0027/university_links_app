@@ -111,8 +111,8 @@ class NotificationService {
         // v22: all parameters in zonedSchedule() are now named
         await _plugin.zonedSchedule(
           id: _notifIdBase + i,
-          title: '🍽️ رزرو غذا یادت نره!',
-          body: 'سامانه صبا رو باز کن و غذای هفته‌ات رو رزرو کن.',
+          title: '🍕 رزرو غذا یادت نره !',
+          body: 'سامانه سماد رو باز کن و غذای هفته‌ات رو رزرو کن',
           scheduledDate: scheduledTime,
           notificationDetails: notifDetails,
           androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,

@@ -5,11 +5,11 @@ class SettingsStore {
   SettingsStore._();
   static final SettingsStore instance = SettingsStore._();
 
-  static const _notificationsKey = 'settings_notifications_enabled';
-  static const _darkModeKey = 'settings_dark_mode_enabled';
+  static const String _notificationsKey = 'settings_notifications_enabled';
+  static const String _darkModeKey = 'settings_dark_mode_enabled';
   // Tracks whether the user has manually set the theme at least once.
   // Before first manual change, theme follows the device system setting.
-  static const _darkModeSetByUserKey = 'settings_dark_mode_set_by_user';
+  static const String _darkModeSetByUserKey = 'settings_dark_mode_set_by_user';
 
   final ValueNotifier<bool> notificationsEnabled = ValueNotifier<bool>(true);
   final ValueNotifier<bool> darkModeEnabled = ValueNotifier<bool>(false);
