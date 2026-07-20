@@ -56,7 +56,7 @@ class HomeHeader extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   const Text(
-                    'دانشکده شهید چمران رشت',
+                    'دانشگاه ملی مهارت استان گیلان',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -65,7 +65,7 @@ class HomeHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'دانشگاه ملی مهارت - استان گیلان',
+                    'سامانه‌ها و سایت‌های دانشگاه را سریع پیدا کنید',
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.85),
                       fontSize: 13,

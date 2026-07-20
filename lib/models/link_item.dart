@@ -2,19 +2,15 @@ class LinkItem {
   final String title;
   final String url;
   final String shortUrl;
-  final String? logoUrl;
+
+  /// Path to a bundled asset image (e.g. 'assets/logos/tvu.png'). All logos
+  /// are bundled locally — no network request is made for images.
+  final String? localLogo;
 
   const LinkItem({
     required this.title,
     required this.url,
     required this.shortUrl,
-    this.logoUrl,
+    this.localLogo,
   });
-
-  String get effectiveLogoUrl {
-    if (logoUrl != null) return logoUrl!;
-    final uri = Uri.tryParse(url);
-    final domain = uri?.host ?? '';
-    return 'https://www.google.com/s2/favicons?domain=$domain&sz=128';
-  }
 }

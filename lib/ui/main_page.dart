@@ -131,7 +131,7 @@ class _AppDrawer extends StatelessWidget {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    'دانشکده شهید چمران رشت',
+                    'دانشگاه ملی مهارت استان گیلان',
                     style: TextStyle(color: Colors.white70, fontSize: 12),
                   ),
                 ],
