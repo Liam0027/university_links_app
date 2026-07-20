@@ -70,7 +70,9 @@ class _SearchPageState extends State<SearchPage> {
                         borderRadius: BorderRadius.circular(14),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF28325A).withOpacity(0.06),
+                            color: const Color(
+                              0xFF28325A,
+                            ).withValues(alpha: 0.06),
                             blurRadius: 16,
                             offset: const Offset(0, 6),
                           ),
@@ -135,7 +137,7 @@ class _SearchPageState extends State<SearchPage> {
                   : ListView.separated(
                       padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
                       itemCount: results.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 10),
+                      separatorBuilder: (_, _) => const SizedBox(height: 10),
                       itemBuilder: (context, index) => QuickLinkTile(
                         item: results[index].key,
                         category: results[index].value,
@@ -161,7 +163,7 @@ class _SearchHint extends StatelessWidget {
             Icon(
               Icons.search,
               size: 40,
-              color: context.textSecondary.withOpacity(0.5),
+              color: context.textSecondary.withValues(alpha: 0.5),
             ),
             const SizedBox(height: 12),
             Text(
@@ -188,7 +190,7 @@ class _NoResults extends StatelessWidget {
           Icon(
             Icons.search_off,
             size: 40,
-            color: context.textSecondary.withOpacity(0.5),
+            color: context.textSecondary.withValues(alpha: 0.5),
           ),
           const SizedBox(height: 12),
           Text(

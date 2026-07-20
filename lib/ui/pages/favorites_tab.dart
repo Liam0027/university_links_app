@@ -28,13 +28,13 @@ class FavoritesTab extends StatelessWidget {
         Expanded(
           child: ValueListenableBuilder<Set<String>>(
             valueListenable: FavoritesStore.instance.favoriteUrls,
-            builder: (context, _, __) {
+            builder: (context, _, _) {
               final items = FavoritesStore.instance.favoriteItems;
               if (items.isEmpty) return const _EmptyFavorites();
               return ListView.separated(
                 padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
                 itemCount: items.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 10),
+                separatorBuilder: (_, _) => const SizedBox(height: 10),
                 itemBuilder: (context, index) => QuickLinkTile(
                   item: items[index].key,
                   category: items[index].value,
@@ -59,8 +59,11 @@ class _EmptyFavorites extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.star_border,
-                size: 44, color: context.textSecondary.withOpacity(0.5)),
+            Icon(
+              Icons.star_border,
+              size: 44,
+              color: context.textSecondary.withValues(alpha: 0.5),
+            ),
             const SizedBox(height: 12),
             Text(
               'هنوز لینکی به علاقه‌مندی‌ها اضافه نکرده‌اید',
@@ -73,7 +76,7 @@ class _EmptyFavorites extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 11.5,
-                color: context.textSecondary.withOpacity(0.8),
+                color: context.textSecondary.withValues(alpha: 0.8),
               ),
             ),
           ],

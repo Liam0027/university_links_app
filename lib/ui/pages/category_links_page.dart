@@ -59,7 +59,7 @@ class CategoryLinksPage extends StatelessWidget {
                   : ListView.separated(
                       padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
                       itemCount: category.links.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 10),
+                      separatorBuilder: (_, _) => const SizedBox(height: 10),
                       itemBuilder: (context, index) => QuickLinkTile(
                         item: category.links[index],
                         category: category,

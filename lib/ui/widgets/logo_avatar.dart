@@ -26,7 +26,7 @@ class LogoAvatar extends StatelessWidget {
         ? Image.asset(
             item.localLogo!,
             fit: BoxFit.contain,
-            errorBuilder: (_, __, ___) => letterFallback,
+            errorBuilder: (_, _, _) => letterFallback,
           )
         : letterFallback;
 

@@ -13,9 +13,17 @@ class BottomNavBar extends StatelessWidget {
 
   static const _items = [
     (icon: Icons.home_outlined, activeIcon: Icons.home, label: 'خانه'),
-    (icon: Icons.grid_view_outlined, activeIcon: Icons.grid_view, label: 'دسته‌ها'),
+    (
+      icon: Icons.grid_view_outlined,
+      activeIcon: Icons.grid_view,
+      label: 'دسته‌ها',
+    ),
     (icon: Icons.star_border, activeIcon: Icons.star, label: 'علاقه‌مندی'),
-    (icon: Icons.settings_outlined, activeIcon: Icons.settings, label: 'تنظیمات'),
+    (
+      icon: Icons.settings_outlined,
+      activeIcon: Icons.settings,
+      label: 'تنظیمات',
+    ),
   ];
 
   @override
@@ -30,7 +38,7 @@ class BottomNavBar extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF28325A).withOpacity(0.1),
+            color: const Color(0xFF28325A).withValues(alpha: 0.1),
             blurRadius: 30,
             offset: const Offset(0, -10),
           ),
@@ -60,7 +68,9 @@ class BottomNavBar extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
-                      color: isActive ? AppColors.primary : context.textSecondary,
+                      color: isActive
+                          ? AppColors.primary
+                          : context.textSecondary,
                     ),
                   ),
                   const SizedBox(height: 4),

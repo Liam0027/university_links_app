@@ -32,9 +32,9 @@ class QuickLinkTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF28325A).withOpacity(
-                  context.isDark ? 0.0 : 0.08,
-                ),
+                color: const Color(
+                  0xFF28325A,
+                ).withValues(alpha: context.isDark ? 0.0 : 0.08),
                 blurRadius: 24,
                 offset: const Offset(0, 8),
               ),

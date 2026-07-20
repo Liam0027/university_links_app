@@ -43,7 +43,7 @@ class SettingsTab extends StatelessWidget {
                   trailing: Switch(
                     value: enabled,
                     onChanged: SettingsStore.instance.setNotificationsEnabled,
-                    activeColor: AppColors.primary,
+                    activeThumbColor: AppColors.primary,
                   ),
                 ),
               ),
@@ -58,7 +58,7 @@ class SettingsTab extends StatelessWidget {
                   trailing: Switch(
                     value: enabled,
                     onChanged: SettingsStore.instance.setDarkModeEnabled,
-                    activeColor: AppColors.primary,
+                    activeThumbColor: AppColors.primary,
                   ),
                 ),
               ),
@@ -156,7 +156,7 @@ class _SettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final iconBg = context.isDark ? color.withOpacity(0.18) : bgColor;
+    final iconBg = context.isDark ? color.withValues(alpha: 0.18) : bgColor;
 
     final content = Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -167,7 +167,7 @@ class _SettingsTile extends StatelessWidget {
           BoxShadow(
             color: const Color(
               0xFF28325A,
-            ).withOpacity(context.isDark ? 0.0 : 0.06),
+            ).withValues(alpha: context.isDark ? 0.0 : 0.06),
             blurRadius: 18,
             offset: const Offset(0, 6),
           ),
@@ -211,7 +211,7 @@ class _SettingsTile extends StatelessWidget {
               ],
             ),
           ),
-          if (trailing != null) trailing!,
+          ?trailing,
         ],
       ),
     );
@@ -274,7 +274,7 @@ class _UpdateCheckTileState extends State<_UpdateCheckTile> {
     final versionChip = Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: context.textSecondary.withOpacity(0.12),
+        color: context.textSecondary.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
@@ -318,7 +318,7 @@ class _UpdateCheckTileState extends State<_UpdateCheckTile> {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.15),
+            color: AppColors.primary.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
@@ -402,7 +402,7 @@ class _AboutFooter extends StatelessWidget {
           style: TextStyle(
             fontSize: 10.5,
             height: 1.6,
-            color: context.textSecondary.withOpacity(0.8),
+            color: context.textSecondary.withValues(alpha: 0.8),
           ),
         ),
         const SizedBox(height: 18),
@@ -413,7 +413,7 @@ class _AboutFooter extends StatelessWidget {
           style: TextStyle(
             fontSize: 10.5,
             height: 1.6,
-            color: context.textSecondary.withOpacity(0.8),
+            color: context.textSecondary.withValues(alpha: 0.8),
           ),
         ),
       ],

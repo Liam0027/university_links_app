@@ -67,7 +67,7 @@ class HomeHeader extends StatelessWidget {
                   Text(
                     'سامانه‌ها و سایت‌های دانشگاه را سریع پیدا کنید',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.85),
+                      color: Colors.white.withValues(alpha: 0.85),
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
                     ),
@@ -87,7 +87,7 @@ class HomeHeader extends StatelessWidget {
     height: size,
     decoration: BoxDecoration(
       shape: BoxShape.circle,
-      color: Colors.white.withOpacity(0.08),
+      color: Colors.white.withValues(alpha: 0.08),
     ),
   );
 }
@@ -101,7 +101,7 @@ class _GlassIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white.withOpacity(0.18),
+      color: Colors.white.withValues(alpha: 0.18),
       borderRadius: BorderRadius.circular(14),
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
@@ -150,7 +150,7 @@ class _SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: context.isDark ? 0 : 8,
-      shadowColor: AppColors.primary.withOpacity(0.28),
+      shadowColor: AppColors.primary.withValues(alpha: 0.28),
       borderRadius: BorderRadius.circular(16),
       child: TextField(
         controller: _controller,

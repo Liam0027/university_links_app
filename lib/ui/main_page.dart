@@ -157,7 +157,7 @@ class _AppDrawer extends StatelessWidget {
                         height: 38,
                         decoration: BoxDecoration(
                           color: context.isDark
-                              ? cat.color.withOpacity(0.18)
+                              ? cat.color.withValues(alpha: 0.18)
                               : cat.bgColor,
                           borderRadius: BorderRadius.circular(11),
                         ),

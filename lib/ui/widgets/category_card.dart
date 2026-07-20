@@ -14,25 +14,25 @@ class CategoryCard extends StatelessWidget {
 
     final cardBg = isDark
         ? Color.alphaBlend(
-            category.color.withOpacity(0.12),
+            category.color.withValues(alpha: 0.12),
             AppColors.cardBgDark,
           )
         : category.bgColor;
 
     final iconBg = isDark
-        ? category.color.withOpacity(0.18)
-        : Colors.white.withOpacity(0.55);
+        ? category.color.withValues(alpha: 0.18)
+        : Colors.white.withValues(alpha: 0.55);
 
     // Decorative circle color — subtle in both modes
     final circleColor = isDark
-        ? category.color.withOpacity(0.08)
-        : Colors.white.withOpacity(0.3);
+        ? category.color.withValues(alpha: 0.08)
+        : Colors.white.withValues(alpha: 0.3);
 
     return Material(
       color: cardBg,
       borderRadius: BorderRadius.circular(18),
       elevation: context.isDark ? 0 : 2,
-      shadowColor: const Color(0xFF28325A).withOpacity(0.15),
+      shadowColor: const Color(0xFF28325A).withValues(alpha: 0.15),
       child: InkWell(
         borderRadius: BorderRadius.circular(18),
         onTap: () => Navigator.push(
