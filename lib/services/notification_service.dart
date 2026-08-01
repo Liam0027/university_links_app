@@ -18,14 +18,11 @@ class NotificationService {
   // Fixed Persian calendar ranges during which the university is closed.
   // Update these if the academic calendar changes.
   static const List<_JalaliRange> _holidays = [
-    _JalaliRange(month: 1, fromDay: 1, toDay: 13), // Nowruz break
+    _JalaliRange(month: 1, fromDay: 1, toDay: 15), // Nowruz break
+    _JalaliRange(month: 4, fromDay: 20, toDay: 31), // Summer (End Of Tir)
     _JalaliRange(month: 5, fromDay: 1, toDay: 31), // Summer (Mordad)
     _JalaliRange(month: 6, fromDay: 1, toDay: 31), // Summer (Shahrivar)
-    _JalaliRange(
-      month: 10,
-      fromDay: 1,
-      toDay: 14,
-    ), // Winter break (first half of Dey)
+    _JalaliRange(month: 12, fromDay: 20, toDay: 30), // Winter (End Of Esfand)
   ];
 
   bool _isHoliday(DateTime date) {

@@ -28,8 +28,18 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Under edge-to-edge, the system nav bar is now transparent and no
+    // longer reserves its own space — so we add its height manually here
+    // to keep our labels/icons clear of the system back/home/recent area.
+    final systemNavInset = MediaQuery.of(context).viewPadding.bottom;
+
     return Container(
-      padding: const EdgeInsets.fromLTRB(10, 14, 10, 18),
+      padding: EdgeInsets.fromLTRB(
+        10,
+        14,
+        10,
+        systemNavInset > 20 ? systemNavInset + 2 : 20,
+      ),
       decoration: BoxDecoration(
         color: context.cardColor,
         borderRadius: const BorderRadius.only(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'core/app_colors.dart';
 import 'services/settings_store.dart';
@@ -13,14 +14,34 @@ class App extends StatelessWidget {
       valueListenable: SettingsStore.instance.themeMode,
       builder: (context, mode, _) {
         return MaterialApp(
-          title: 'لینک‌های دانشگاه',
+          title: 'سراد',
           debugShowCheckedModeBanner: false,
           themeMode: mode,
           theme: _buildTheme(Brightness.light),
           darkTheme: _buildTheme(Brightness.dark),
-          builder: (context, child) => Directionality(
-            textDirection: TextDirection.rtl,
-            child: child!,
+          builder: (context, child) => AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle(
+              // On Android 15+ (API 35), edge-to-edge is enforced and
+              // setNavigationBarColor() is deprecated/ignored for any
+              // non-transparent value — so we go fully transparent and let
+              // the Scaffold's own background color show through, instead
+              // of trying to "match" a solid color (which silently no-ops
+              // on newer Android versions).
+              systemNavigationBarColor: Colors.transparent,
+              systemNavigationBarIconBrightness: context.isDark
+                  ? Brightness.light
+                  : Brightness.dark,
+              systemNavigationBarDividerColor: Colors.transparent,
+              systemNavigationBarContrastEnforced: false,
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: context.isDark
+                  ? Brightness.light
+                  : Brightness.dark,
+            ),
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: child!,
+            ),
           ),
           home: const MainPage(),
         );

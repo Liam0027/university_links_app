@@ -151,6 +151,8 @@ class _SearchBar extends StatelessWidget {
     return Material(
       elevation: context.isDark ? 0 : 8,
       shadowColor: AppColors.primary.withValues(alpha: 0.28),
+      color: context.cardColor,
+      surfaceTintColor: Colors.transparent,
       borderRadius: BorderRadius.circular(16),
       child: TextField(
         controller: _controller,
@@ -161,8 +163,6 @@ class _SearchBar extends StatelessWidget {
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(16.0),
           ),
-          filled: true,
-          fillColor: context.cardColor,
           contentPadding: const EdgeInsets.all(18.0),
           prefixIcon: Icon(
             Icons.search,

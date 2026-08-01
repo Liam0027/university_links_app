@@ -73,10 +73,13 @@ class SettingsTab extends StatelessWidget {
                 bgColor: const Color(0xFFE6F2FC),
                 title: 'حریم خصوصی',
                 subtitle: 'این برنامه چه اطلاعاتی را ذخیره می‌کند',
-                trailing: Icon(
-                  Icons.open_in_new_rounded,
-                  size: 16,
-                  color: context.textSecondary,
+                trailing: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Icon(
+                    Icons.open_in_new_rounded,
+                    size: 16,
+                    color: context.textSecondary,
+                  ),
                 ),
                 onTap: () => _openUrl(AppInfo.privacyPolicyUrl),
               ),
@@ -87,10 +90,13 @@ class SettingsTab extends StatelessWidget {
                 bgColor: const Color(0xFFE7EAEE),
                 title: 'کد‌ منبع در گیت‌هاب',
                 subtitle: 'مشاهده، گزارش مشکل یا مشارکت در توسعه',
-                trailing: Icon(
-                  Icons.open_in_new_rounded,
-                  size: 16,
-                  color: context.textSecondary,
+                trailing: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Icon(
+                    Icons.open_in_new_rounded,
+                    size: 16,
+                    color: context.textSecondary,
+                  ),
                 ),
                 onTap: () => _openUrl(AppInfo.githubUrl),
               ),
@@ -99,8 +105,10 @@ class SettingsTab extends StatelessWidget {
                 icon: Icons.school_outlined,
                 color: Color(0xFFFF9F5A),
                 bgColor: Color(0xFFFFF1E4),
-                title: 'دانشکده شهید چمران رشت',
-                subtitle: 'دانشگاه ملی مهارت - استان گیلان',
+                title: 'دانشگاه ملی مهارت - استان گیلان',
+                subtitle:
+                    'این برنامه توسط یک دانشجو به‌صورت مستقل توسعه داده شده و '
+                    'محصول رسمی دانشگاه ملی مهارت نیست.',
               ),
               const SizedBox(height: 26),
               const _AboutFooter(),
@@ -393,30 +401,15 @@ class _AboutFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'این برنامه توسط یک دانشجو به‌صورت مستقل توسعه داده شده و '
-          'محصول رسمی دانشگاه ملی مهارت نیست.',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 10.5,
-            height: 1.6,
-            color: context.textSecondary.withValues(alpha: 0.8),
-          ),
-        ),
-        const SizedBox(height: 18),
-        Text(
-          '© 2026 Alireza Jalili – MultiDev. All rights reserved.\n\nMade with ❤️',
-          textAlign: TextAlign.center,
-          textDirection: TextDirection.ltr,
-          style: TextStyle(
-            fontSize: 10.5,
-            height: 1.6,
-            color: context.textSecondary.withValues(alpha: 0.8),
-          ),
-        ),
-      ],
+    return Text(
+      '© 2026 Alireza Jalili – MultiDev. All rights reserved.\n\nMade with ❤️',
+      textAlign: TextAlign.center,
+      textDirection: TextDirection.ltr,
+      style: TextStyle(
+        fontSize: 10.5,
+        height: 1.6,
+        color: context.textSecondary.withValues(alpha: 0.8),
+      ),
     );
   }
 }
