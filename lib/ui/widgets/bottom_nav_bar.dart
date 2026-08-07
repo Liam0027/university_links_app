@@ -15,7 +15,7 @@ class BottomNavBar extends StatelessWidget {
     (icon: Icons.home_outlined, activeIcon: Icons.home, label: 'خانه'),
     (
       icon: Icons.grid_view_outlined,
-      activeIcon: Icons.grid_view,
+      activeIcon: Icons.grid_view_rounded,
       label: 'دسته‌ها',
     ),
     (icon: Icons.star_border, activeIcon: Icons.star, label: 'علاقه‌مندی'),
