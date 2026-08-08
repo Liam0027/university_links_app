@@ -1,6 +1,8 @@
-<div dir="rtl">
+<div dir="rtl" align="center">
 
-# 🎓 لینک‌های دانشگاه ملی مهارت - گیلان
+<img src="assets/icon/icon.png" width="120" alt="آیکون سراد" />
+
+# 🎓 سراد | لینک‌های دانشگاه ملی مهارت - گیلان
 
 </div>
 
@@ -11,7 +13,7 @@
 ## English
 
 ### About
-A simple Flutter app I built for quick access to the portals and websites of **National University of Skills (TVU) - Gilan Province**, Iran.
+**SARAD** — a simple Flutter app I built for quick access to the portals and websites of **National University of Skills (TVU) - Gilan Province**, Iran.
 
 The idea came from constantly having to search for portal URLs like Bustan or Saba every time I needed them. So I decided to put them all in one place.
 
@@ -26,6 +28,7 @@ The idea came from constantly having to search for portal URLs like Bustan or Sa
 - All institution logos are bundled inside the app — no internet needed to display them, and nothing loads inconsistently on slow/filtered connections
 - In-app update check against the latest GitHub release
 - A dedicated [Privacy Policy](./PRIVACY.md) page, linked from Settings
+- Custom app icon and a light/dark-aware native splash screen
 
 ### Tech Stack
 - **Flutter** (Dart)
@@ -35,6 +38,7 @@ The idea came from constantly having to search for portal URLs like Bustan or Sa
 - `flutter_local_notifications` + `timezone` — scheduled notifications
 - `shamsi_date` — Persian calendar for holiday detection
 - `http` — checking the latest GitHub release for in-app update notices
+- `flutter_launcher_icons` / `flutter_native_splash` — dev-only, used to generate the app icon and splash screen assets
 
 ### Project Structure
 ```
@@ -47,7 +51,13 @@ lib/
 ├── services/      # favorites, settings, notifications, update checker
 └── ui/
     ├── pages/     # app screens
-    └── widgets/   # reusable widgets
+    ├── widgets/   # reusable widgets
+    └── utils/     # UI-only helpers (e.g. focus/unfocus handling)
+
+assets/
+├── images/        # bundled institution/system logos shown in the app
+├── icon/          # app icon source images (launcher icon)
+└── splash/        # native splash screen source images (light/dark)
 ```
 
 ### Getting Started
@@ -71,7 +81,7 @@ Built for TVU Gilan students, but the structure makes it easy to adapt for any u
 ## فارسی
 
 ### درباره پروژه
-یه اپلیکیشن ساده که برای دسترسی سریع‌تر به سامانه‌ها و سایت‌های دانشگاه ملی مهارت استان گیلان نوشتم.
+**سراد** — یه اپلیکیشن ساده که برای دسترسی سریع‌تر به سامانه‌ها و سایت‌های دانشگاه ملی مهارت استان گیلان نوشتم.
 
 انگیزه اصلیم این بود که هر بار باید آدرس سامانه‌هایی مثل بوستان یا صبا رو جستجو می‌کردم یا از تاریخچه مرورگر پیداشون می‌کردم — تصمیم گرفتم همه‌شون رو یه‌جا جمع کنم.
 
@@ -86,6 +96,7 @@ Built for TVU Gilan students, but the structure makes it easy to adapt for any u
 - تمام لوگوهای دانشکده‌ها و سامانه‌ها داخل خود برنامه بسته‌بندی (bundle) شدن — برای نمایششون نیازی به اینترنت نیست و روی اینترنت‌های کند یا محدود هم بدون مشکل نمایش داده می‌شن
 - بررسی بروزرسانی از داخل برنامه، بر اساس آخرین نسخه‌ی منتشرشده در گیت‌هاب
 - صفحه‌ی [حریم خصوصی](./PRIVACY.md) مجزا، قابل‌دسترس از تنظیمات
+- آیکون اختصاصی و اسپلش‌اسکرین نیتیو با پشتیبانی از حالت روشن/تیره
 
 ### تکنولوژی‌ها
 - **Flutter** (Dart)
@@ -95,6 +106,27 @@ Built for TVU Gilan students, but the structure makes it easy to adapt for any u
 - `flutter_local_notifications` + `timezone` — اعلان‌های زمان‌بندی‌شده
 - `shamsi_date` — تبدیل تاریخ برای تشخیص تعطیلات شمسی
 - `http` — بررسی آخرین نسخه‌ی منتشرشده در گیت‌هاب برای اطلاع‌رسانی بروزرسانی
+- `flutter_launcher_icons` / `flutter_native_splash` — فقط زمانِ توسعه، برای ساختِ آیکون و اسپلش‌اسکرین
+
+### ساختار پروژه
+```
+lib/
+├── main.dart
+├── app.dart
+├── core/          # رنگ‌ها، اطلاعات برنامه و ابزارهای مشترک
+├── models/        # مدل‌های داده
+├── data/          # لینک‌ها و دسته‌بندی‌ها
+├── services/      # علاقه‌مندی‌ها، تنظیمات، اعلان‌ها، بررسی بروزرسانی
+└── ui/
+    ├── pages/     # صفحات برنامه
+    ├── widgets/   # ویجت‌های قابل‌استفاده مجدد
+    └── utils/     # ابزارهای مخصوص UI (مثلاً مدیریت فوکوس)
+
+assets/
+├── images/        # لوگوهای بسته‌بندی‌شده‌ی دانشکده‌ها/سامانه‌ها
+├── icon/          # تصاویر منبعِ آیکون برنامه
+└── splash/        # تصاویر منبعِ اسپلش‌اسکرین (حالت روشن/تیره)
+```
 
 ### اجرای پروژه
 ```bash
@@ -116,6 +148,7 @@ flutter run
 | صبا (رزرو غذا) | saba.tvu.ac.ir |
 | سماد | samad.app |
 | سجاد (امور دانشجویی) | portal.saorg.ir |
+| صندوق رفاه دانشجویی | refah.swf.ir |
 | دانشگاه ملی مهارت | tvu.ac.ir |
 | واحد استان گیلان | guilan.tvu.ac.ir |
 | دانشکده شهید چمران رشت | p-rasht.tvu.ac.ir |
