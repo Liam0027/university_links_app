@@ -98,13 +98,13 @@ final List<LinkCategory> categories = [
     bgColor: const Color(0xFFFFF1E4),
     links: const [
       LinkItem(
-        title: 'سامانه تغذیه (نسخه جدید)',
+        title: 'سامانه تغذیه سماد (نسخه جدید)',
         url: 'https://samad.app',
         shortUrl: 'samad.app',
         localLogo: 'assets/images/logo-samad.png',
       ),
       LinkItem(
-        title: 'سامانه تغذیه (نسخه قدیمی)',
+        title: 'سامانه تغذیه صبا (نسخه قدیمی)',
         url: 'https://saba.tvu.ac.ir',
         shortUrl: 'saba.tvu.ac.ir',
         localLogo: 'assets/images/logo-saba.png',
