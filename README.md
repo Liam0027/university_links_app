@@ -10,6 +10,19 @@
 
 ---
 
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center"><img src="screenshots/search.gif" width="300" /><br/><sub>جستجو</sub></td>
+    <td align="center"><img src="screenshots/settings.png" width="300" /><br/><sub>تنظیمات</sub></td>
+  </tr>
+</table>
+
+</div>
+
+---
+
 ## English
 
 ### About
@@ -58,6 +71,8 @@ assets/
 ├── images/        # bundled institution/system logos shown in the app
 ├── icon/          # app icon source images (launcher icon)
 └── splash/        # native splash screen source images (light/dark)
+
+screenshots/        # README preview media (not bundled into the app)
 ```
 
 ### Getting Started
@@ -126,6 +141,8 @@ assets/
 ├── images/        # لوگوهای بسته‌بندی‌شده‌ی دانشکده‌ها/سامانه‌ها
 ├── icon/          # تصاویر منبعِ آیکون برنامه
 └── splash/        # تصاویر منبعِ اسپلش‌اسکرین (حالت روشن/تیره)
+
+screenshots/        # رسانه‌های نمایشی README (داخل خود اپ بسته‌بندی نمی‌شن)
 ```
 
 ### اجرای پروژه
