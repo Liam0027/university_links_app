@@ -15,8 +15,8 @@
 
 <table>
   <tr>
-    <td align="center"><img src="screenshots/search.gif" width="300" /><br/><sub>جستجو</sub></td>
-    <td align="center"><img src="screenshots/settings.png" width="300" /><br/><sub>تنظیمات</sub></td>
+    <td align="center"><img src="screenshots/search.gif" width="300" /><br/><sub>Search | جستجو</sub></td>
+    <td align="center"><img src="screenshots/settings.png" width="300" /><br/><sub>Settings | تنظیمات</sub></td>
   </tr>
 </table>
 
