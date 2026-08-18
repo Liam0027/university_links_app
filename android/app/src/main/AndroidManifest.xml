@@ -4,6 +4,10 @@
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <!-- End Added Permissions For Notif -->
+    <!-- Required for the in-app update checker (GitHub API) to reach the
+         network at all in release builds. Debug builds get this for free
+         from the Flutter tooling, which is why it only failed in release. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="سراد"
         android:name="${applicationName}"

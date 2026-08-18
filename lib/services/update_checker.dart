@@ -26,7 +26,10 @@ class UpdateChecker {
           Uri.parse(AppInfo.githubReleasesApiUrl),
           headers: {'Accept': 'application/vnd.github+json'},
         )
-        .timeout(const Duration(seconds: 10));
+        // Requests to api.github.com can be noticeably slower on weaker
+        // connections (even when not blocked outright), so this is kept
+        // generous rather than failing fast.
+        .timeout(const Duration(seconds: 15));
 
     if (response.statusCode != 200) {
       throw Exception('GitHub API returned ${response.statusCode}');

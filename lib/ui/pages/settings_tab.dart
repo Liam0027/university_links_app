@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../core/app_colors.dart';
@@ -252,6 +254,10 @@ class _UpdateCheckTile extends StatefulWidget {
 class _UpdateCheckTileState extends State<_UpdateCheckTile> {
   _UpdateState _state = _UpdateState.idle;
   UpdateCheckResult? _result;
+  // True once checking has been running long enough that the connection
+  // is likely slow, rather than just "starting" — lets us show a more
+  // honest status instead of leaving the user staring at a bare spinner.
+  bool _isSlow = false;
 
   Future<void> _handleTap() async {
     // If an update was already found, tapping again opens the download
@@ -262,7 +268,19 @@ class _UpdateCheckTileState extends State<_UpdateCheckTile> {
       return;
     }
 
-    setState(() => _state = _UpdateState.checking);
+    setState(() {
+      _state = _UpdateState.checking;
+      _isSlow = false;
+    });
+
+    // After a few seconds of still checking, switch the message to make
+    // clear this is just a slow connection, not a stuck/broken app.
+    final slowTimer = Future.delayed(const Duration(seconds: 4), () {
+      if (mounted && _state == _UpdateState.checking) {
+        setState(() => _isSlow = true);
+      }
+    });
+
     try {
       final result = await UpdateChecker.checkForUpdate();
       if (!mounted) return;
@@ -275,6 +293,10 @@ class _UpdateCheckTileState extends State<_UpdateCheckTile> {
     } catch (_) {
       if (!mounted) return;
       setState(() => _state = _UpdateState.error);
+    } finally {
+      // Let the delayed check finish harmlessly even if we're done early;
+      // it only acts if _state is still "checking" by the time it fires.
+      unawaited(slowTimer);
     }
   }
 
@@ -366,7 +388,9 @@ class _UpdateCheckTileState extends State<_UpdateCheckTile> {
   String get _subtitle {
     switch (_state) {
       case _UpdateState.checking:
-        return 'در حال بررسی بروزرسانی...';
+        return _isSlow
+            ? 'اتصال کند است، کمی صبر کنید...'
+            : 'در حال بررسی بروزرسانی...';
       case _UpdateState.upToDate:
         return 'بروزرسانی جدیدی موجود نیست';
       case _UpdateState.available:
