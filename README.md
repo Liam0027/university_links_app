@@ -47,7 +47,7 @@ The idea came from constantly having to search for portal URLs like Bustan or Sa
 ### Tech Stack
 - **Flutter** (Dart)
 - `url_launcher` — opening links
-- `google_fonts` — Vazirmatn font
+- Vazirmatn font — bundled locally in `assets/fonts/` (no runtime download)
 - `shared_preferences` — local storage
 - `flutter_local_notifications` + `timezone` — scheduled notifications
 - `shamsi_date` — Persian calendar for holiday detection
@@ -117,7 +117,7 @@ Built for TVU Gilan students, but the structure makes it easy to adapt for any u
 ### تکنولوژی‌ها
 - **Flutter** (Dart)
 - `url_launcher` — باز کردن لینک‌ها
-- `google_fonts` — فونت وزیرمتن
+- فونت وزیرمتن — به‌صورت محلی در `assets/fonts/` باندل شده (بدون نیاز به دانلود در زمان اجرا)
 - `shared_preferences` — ذخیره‌سازی محلی
 - `flutter_local_notifications` + `timezone` — اعلان‌های زمان‌بندی‌شده
 - `shamsi_date` — تبدیل تاریخ برای تشخیص تعطیلات شمسی

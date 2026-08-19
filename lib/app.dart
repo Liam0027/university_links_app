@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'core/app_colors.dart';
 import 'services/settings_store.dart';
 import 'ui/main_page.dart';
@@ -67,7 +66,9 @@ class App extends StatelessWidget {
         onSurface: textColor,
       ),
       cardColor: cardColor,
-      textTheme: GoogleFonts.vazirmatnTextTheme().apply(
+      fontFamily: 'Vazirmatn',
+      textTheme: Typography.material2021().black.apply(
+        fontFamily: 'Vazirmatn',
         bodyColor: textColor,
         displayColor: textColor,
       ),
