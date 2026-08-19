@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.university_links_app"
+    namespace = "com.multidev.sarad"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -16,8 +16,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.university_links_app"
+        applicationId = "com.multidev.sarad"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion // Changed for flutter_local_notifications

@@ -1,4 +1,4 @@
-package com.example.university_links_app
+package com.multidev.sarad
 
 import io.flutter.embedding.android.FlutterActivity
 
