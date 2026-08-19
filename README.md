@@ -71,7 +71,8 @@ lib/
 assets/
 ├── images/        # bundled institution/system logos shown in the app
 ├── icon/          # app icon source images (launcher icon)
-└── splash/        # native splash screen source images (light/dark)
+├── splash/        # native splash screen source images (light/dark)
+└── fonts/         # bundled Vazirmatn font weights (offline, no google_fonts)
 
 screenshots/        # README preview media (not bundled into the app)
 ```
@@ -141,7 +142,8 @@ lib/
 assets/
 ├── images/        # لوگوهای بسته‌بندی‌شده‌ی دانشکده‌ها/سامانه‌ها
 ├── icon/          # تصاویر منبعِ آیکون برنامه
-└── splash/        # تصاویر منبعِ اسپلش‌اسکرین (حالت روشن/تیره)
+├── splash/        # تصاویر منبعِ اسپلش‌اسکرین (حالت روشن/تیره)
+└── fonts/         # وزن‌های فونت وزیرمتن که به‌صورت آفلاین باندل شدن (بدون google_fonts)
 
 screenshots/        # رسانه‌های نمایشی README (داخل خود اپ بسته‌بندی نمی‌شن)
 ```
